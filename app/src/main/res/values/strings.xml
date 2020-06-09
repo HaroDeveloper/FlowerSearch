@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FlowersMVP</string>
+    <string name="search_flowers_failed">Search failed. Try again later</string>
+    <string name="get_flowers_failed">Getting flowers failed. Try again later</string>
+</resources>
