@@ -19,8 +19,6 @@ import javax.inject.Inject
 class HomeFragment : Fragment(), HomeContract.View {
     @Inject
     lateinit var presenter: HomePresenter
-    @Inject
-    lateinit var homeInteractor: HomeInteractor
     private lateinit var flowerAdapter: FlowerAdapter
     private var startingPage = 1
     private var recyclerStartPos = 0
@@ -36,7 +34,6 @@ class HomeFragment : Fragment(), HomeContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setAdapter()
-        homeInteractor.flowers
         presenter.bindView(this)
         presenter.getFlowers(startingPage)
         setListeners()
@@ -110,4 +107,5 @@ class HomeFragment : Fragment(), HomeContract.View {
         super.onDestroy()
         presenter.unbindView()
     }
+
 }
