@@ -1,4 +1,4 @@
-package element.list.flowersmvp.home
+package element.list.flowersmvp.ui.home
 
 import android.os.Bundle
 import android.text.Editable
@@ -13,13 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import element.list.flowersmvp.*
 import element.list.flowersmvp.constants.Constants
 import element.list.flowersmvp.model.Flower
+import element.list.flowersmvp.utils.CustomTextWatcher
+import element.list.flowersmvp.utils.PaginationScrollListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), HomeContract.View {
     @Inject
     lateinit var presenter: HomePresenter
-    private lateinit var flowerAdapter: FlowerAdapter
+    private var flowerAdapter: FlowerAdapter? = null
     private var startingPage = 1
     private var recyclerStartPos = 0
 
@@ -45,7 +47,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun setAdapter() {
-        flowerAdapter = FlowerAdapter(context!!)
+        flowerAdapter = context?.let { FlowerAdapter(it) }
         flowerRecyclerView.adapter = flowerAdapter
         val flowerLayoutManager =
             GridLayoutManager(
@@ -88,11 +90,11 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun setAdapterData(flowerList: MutableList<Flower>) {
-        flowerAdapter.setData(flowerList)
+        flowerAdapter?.setData(flowerList)
     }
 
     override fun addAdapterData(flowerList: MutableList<Flower>) {
-        flowerAdapter.addData(flowerList)
+        flowerAdapter?.addData(flowerList)
     }
 
     override fun searchFlowersFailed() {

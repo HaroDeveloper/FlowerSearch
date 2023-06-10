@@ -4,8 +4,8 @@ import android.app.Application
 import element.list.flowersmvp.di.AppComponent
 import element.list.flowersmvp.di.DaggerAppComponent
 import element.list.flowersmvp.di.modules.AppModule
-import element.list.flowersmvp.home.HomeFragment
-import element.list.flowersmvp.home.HomeModule
+import element.list.flowersmvp.ui.home.HomeFragment
+import element.list.flowersmvp.ui.home.HomeModule
 
 class FlowerApp : Application() {
 

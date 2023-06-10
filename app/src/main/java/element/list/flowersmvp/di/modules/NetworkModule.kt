@@ -2,7 +2,7 @@ package element.list.flowersmvp.di.modules
 
 import dagger.Module
 import dagger.Provides
-import element.list.flowersmvp.FlowerService
+import element.list.flowersmvp.networking.FlowerService
 import element.list.flowersmvp.constants.Constants
 import okhttp3.CookieJar
 import okhttp3.OkHttpClient

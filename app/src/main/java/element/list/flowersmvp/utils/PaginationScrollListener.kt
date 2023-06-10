@@ -1,4 +1,4 @@
-package element.list.flowersmvp
+package element.list.flowersmvp.utils
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView

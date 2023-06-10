@@ -1,8 +1,8 @@
-package element.list.flowersmvp.home
+package element.list.flowersmvp.ui.home
 
-import element.list.flowersmvp.home.listeners.FlowersAfterSearchListener
-import element.list.flowersmvp.home.listeners.GetFlowersListener
-import element.list.flowersmvp.home.listeners.SearchFlowersListener
+import element.list.flowersmvp.ui.home.listeners.FlowersAfterSearchListener
+import element.list.flowersmvp.ui.home.listeners.GetFlowersListener
+import element.list.flowersmvp.ui.home.listeners.SearchFlowersListener
 import element.list.flowersmvp.model.Flower
 
 class HomePresenter(private var interactor: HomeInteractor) :
@@ -32,19 +32,19 @@ class HomePresenter(private var interactor: HomeInteractor) :
     }
 
     override fun getPaginationItems(searchText: String) {
-        if (interactor.flowerItemsPagination.pagination.nextPage >
-            interactor.flowerItemsPagination.pagination.currentPage
+        if ((interactor.flowerItemsPagination?.pagination?.nextPage ?: 0) >
+            (interactor.flowerItemsPagination?.pagination?.currentPage ?: 0)
         ) {
             if (searchText.isEmpty())
-                getFlowers(interactor.flowerItemsPagination.pagination.nextPage)
+                getFlowers(interactor.flowerItemsPagination?.pagination?.nextPage ?: 0)
             else
-                searchFlowers(searchText, interactor.flowerItemsPagination.pagination.nextPage)
+                searchFlowers(searchText, interactor.flowerItemsPagination?.pagination?.nextPage ?: 0)
         }
     }
 
     private var getFlowersListener: GetFlowersListener = object : GetFlowersListener {
-        override fun onGetFlowersSuccess(flowersList: MutableList<Flower>) {
-            view?.addAdapterData(flowersList)
+        override fun onGetFlowersSuccess(flowersList: MutableList<Flower>?) {
+            flowersList?.let { view?.addAdapterData(it) }
             isLoading = false
         }
 
@@ -54,11 +54,11 @@ class HomePresenter(private var interactor: HomeInteractor) :
     }
 
     private var searchFlowersListener: SearchFlowersListener = object : SearchFlowersListener {
-        override fun onSearchFlowersSuccess(flowersList: MutableList<Flower>, pageNum: Int) {
+        override fun onSearchFlowersSuccess(flowersList: MutableList<Flower>?, pageNum: Int?) {
             if (pageNum == 1)
-                view?.setAdapterData(flowersList)
+                flowersList?.let { view?.setAdapterData(it) }
             else
-                view?.addAdapterData(flowersList)
+                flowersList?.let { view?.addAdapterData(it) }
 
             isLoading = false
         }

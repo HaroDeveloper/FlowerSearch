@@ -1,4 +1,4 @@
-package element.list.flowersmvp.home
+package element.list.flowersmvp.ui.home
 
 import dagger.Subcomponent
 

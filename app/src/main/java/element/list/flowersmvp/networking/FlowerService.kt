@@ -1,4 +1,4 @@
-package element.list.flowersmvp
+package element.list.flowersmvp.networking
 
 import element.list.flowersmvp.model.FlowersListResponse
 import retrofit2.Call
